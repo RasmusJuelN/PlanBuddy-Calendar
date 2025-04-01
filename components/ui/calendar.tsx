@@ -13,11 +13,26 @@ function Calendar({
   showOutsideDays = true,
   ...props
 }: React.ComponentProps<typeof DayPicker>) {
+
+
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
+      weekStartsOn={1}
+
+  
+      modifiers={{
+        weekend: { dayOfWeek: [0, 6] }, // Highlight Sundays and Saturdays
+      }}
+      modifiersClassNames={{
+        weekend: " text-background", // Add custom styles for weekends
+      }}
+      
+      
+
       className={cn("py-2 mx-auto ", className)}
       classNames={{
+        
         months: "flex flex-col sm:flex-row gap-2 ",
         month: "flex flex-col gap-4",
         caption: "flex justify-center pt-1 relative items-center w-full",
@@ -35,8 +50,8 @@ function Calendar({
           "text-foreground rounded-md w-8 font-normal text-[0.8rem]",
         row: "flex w-full mt-2",
         cell: cn(
-          "cursor-pointer relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-background [&:has([aria-selected].day-range-end)]:rounded-r-md",
-          props.mode === "range"
+          "relative p-0 text-center text-sm focus-within:relative focus-within:z-20 [&:has([aria-selected])]:bg-background [&:has([aria-selected].day-range-end)]:rounded-r-md",
+          props.mode === "multiple"
             ? "[&:has(>.day-range-end)]:rounded-r-md [&:has(>.day-range-start)]:rounded-l-md first:[&:has([aria-selected])]:rounded-l-md last:[&:has([aria-selected])]:rounded-r-md"
             : "[&:has([aria-selected])]:rounded-md"
         ),
@@ -45,11 +60,11 @@ function Calendar({
           "size-8 p-0 font-normal aria-selected:opacity-100 hover:bg-sidebar-accent"
         ),
         day_range_start:
-          "day-range-start aria-selected:bg-primary aria-selected:text-primary-foreground",
+          "day-range-start aria-selected:bg-background aria-selected:text-background-foreground",
         day_range_end:
-          "day-range-end aria-selected:bg-primary aria-selected:text-primary-foreground",
+          "day-range-end aria-selected:bg-background aria-selected:text-background-foreground",
         day_selected:
-          "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-foreground focus:text-primary-foreground",
+          "bg-primary text-primary-foreground hover:bg-background hover:text-background-foreground focus:bg-foreground focus:text-primary-foreground",
         day_today: "bg-background text-accent-foreground",
         day_outside:
           "day-outside text-muted-foreground aria-selected:text-muted-foreground",

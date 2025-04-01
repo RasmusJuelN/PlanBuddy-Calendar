@@ -14,7 +14,7 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
-import { PaintbrushIcon, Palette } from "lucide-react"
+import { Icon, PaintbrushIcon, Palette } from "lucide-react"
 import { useEffect, useState } from "react";
 
 export function DropdownMenuCustom() {
@@ -88,11 +88,10 @@ export function DropdownMenuCustom() {
                     key={key}
                     onClick={() => setTheme(key)}
                     className={theme === key ? "font-bold" : ""}
+                    icon={<PaintbrushIcon className="size-5" style={{ color: themes[key]["--background"] }}/>}
+                    
                   >
-                    <span
-                      className="w-4 h-4 rounded-full mr-2"
-                      style={{ backgroundColor: themes[key]["--background"] }}
-                    ></span>
+                  
                     {key.charAt(0).toUpperCase() + key.slice(1)}
                   </DropdownMenuItem>
                 ))}

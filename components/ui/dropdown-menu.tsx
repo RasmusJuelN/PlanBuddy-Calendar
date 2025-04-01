@@ -64,10 +64,12 @@ function DropdownMenuItem({
   inset,
   color,
   variant = "default",
+  icon, // Add the icon prop
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Item> & {
   inset?: boolean
   variant?: "default" | "destructive"
+  icon?: React.ReactNode // Define the icon prop
 }) {
   return (
     <DropdownMenuPrimitive.Item
@@ -79,8 +81,8 @@ function DropdownMenuItem({
         className
       )}
       {...props}
-      >
-      {color && <PaintbrushVertical className="size-4" style={{ color }} />}
+    >
+      {icon && <span className="mr-2">{icon}</span>} {/* Render the icon */}
       {props.children}
     </DropdownMenuPrimitive.Item>
   )
